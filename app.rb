@@ -36,3 +36,14 @@ get ("/square_root/results") do
   @the_result = @the_num ** 0.5
   erb(:square_root_results)
 end
+
+get ("/payment/results") do
+  @the_APR = params.fetch("users_APR").to_f
+  @the_years = params.fetch("users_year_number").to_f
+  @the_principal = params.fetch("users_principal").to_f
+  @numerator = @the_APR*@the_principal
+  @denominatora = (1 + @the_APR) **-12 
+  @denominator = 1- denominatora
+  @the_result = @numerator/@demoninator
+  erb(:payment_results)
+end
