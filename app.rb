@@ -49,5 +49,13 @@ get ("/payment/results") do
   @denominator = 1 - @second
   @the_result = @numerator/ @denominator
   @the_result = @the_result.to_fs(:currency)
+  @the_APR = @the_APR.to_fs(:percentage, { :precision => 4 } ) 
   erb(:payment_results)
+end
+
+get ("/random/results") do
+  @the_min = params.fetch("users_min").to_f
+  @the_max = params.fetch("users_max").to_f
+  @the_result = rand(@the_min..@the_max)
+  erb(:random_results)
 end
